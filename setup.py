@@ -4,7 +4,7 @@ from os.path import dirname, join
 
 from setuptools import find_packages, setup
 
-VERSION = (0, 10, 21)
+VERSION = (0, 0, 1)
 __versionstr__ = '.'.join(map(str, VERSION))
 
 
@@ -19,7 +19,7 @@ setup(
     name='mailinator-python-client',
     version=__versionstr__,
     description='Python Client for the Mailinator Email System https://www.mailinator.com',
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     author='Adela Kacso-Vidrean (KVA)',
     author_email='adella.neacsu@gmail.com',
     url='',
