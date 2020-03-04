@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 from mailinator.rule import Rule
 from .part import Part
@@ -9,23 +9,24 @@ from .part import Part
 @dataclass_json
 @dataclass
 class Message(object):
-    from_full: str = field(metadata=config(field_name='fromfull'))
-    headers: Dict[str, Any]
+    domain: str
     subject: str
-    parts: List[Part]
-    msg_from: str = field(metadata=config(field_name='from'))
     to: str
-    msg_id: str = field(metadata=config(field_name='id'))
     time: int
     seconds_ago: int
-    domain: str
-    orig_from: str = field(metadata=config(field_name='origfrom'))
-    mrid: str
-    size: int
-    stream: str
-    msg_type: str
-    source: str
-    text: str
+    msg_from: str = field(metadata=config(field_name='from'))
+    msg_id: str = field(metadata=config(field_name='id'))
+
+    size: Optional[int] = None
+    stream: Optional[str] = None
+    msg_type: Optional[str] = None
+    source: Optional[str] = None
+    text: Optional[str] = None
+    mrid: Optional[str] = None
+    parts: List[Part] = field(default_factory=list)
+    headers: Dict[str, Any] = field(default_factory=dict)
+    from_full: Optional[str] = field(default=None, metadata=config(field_name='fromfull'))
+    orig_from: Optional[str] = field(default=None, metadata=config(field_name='origfrom'))
 
 
 @dataclass_json

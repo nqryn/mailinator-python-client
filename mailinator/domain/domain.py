@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 from enum import Enum
-from typing import List
+from typing import List, Optional
 
 from mailinator.rule import Rule
 
@@ -18,5 +18,5 @@ class Domain(object):
 	description: str
 	enabled: bool
 	name: str
-	ownerid: str
 	rules: List[Rule]
+	ownerid: Optional[str] = None

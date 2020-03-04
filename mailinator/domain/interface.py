@@ -13,7 +13,7 @@ class DomainInterface(ResourceInterface):
 
 	def execute(self, session) -> Domain:
 		result = session.get(self.base_url)
-		return Domain.from_json(result.json())
+		return Domain.from_json(result.text)
 
 
 class DomainsInterface(ResourceInterface):
@@ -23,4 +23,5 @@ class DomainsInterface(ResourceInterface):
 
 	def execute(self, session) -> List[Domain]:
 		result = session.get(self.base_url)
-		return Domain.schema().loads(result.json(), many=True)
+		domains_dict = result.json()['domains']
+		return Domain.schema().load(domains_dict, many=True)
