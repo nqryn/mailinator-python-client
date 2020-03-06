@@ -9,7 +9,6 @@ from .part import Part
 @dataclass_json
 @dataclass
 class Message(object):
-    domain: str
     subject: str
     to: str
     time: int
@@ -17,6 +16,7 @@ class Message(object):
     msg_from: str = field(metadata=config(field_name='from'))
     msg_id: str = field(metadata=config(field_name='id'))
 
+    domain: Optional[str] = None
     size: Optional[int] = None
     stream: Optional[str] = None
     msg_type: Optional[str] = None
